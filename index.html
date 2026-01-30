@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goloka - UMKM Naik Kelas, Komunitas Makin Cuan!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0D0D0D;
+            color: #E5E7EB;
+            scroll-behavior: smooth;
+        }
+
+        .hero-gradient {
+            background-image: linear-gradient(135deg, #10B981 0%, #FBBF24 100%);
+        }
+
+        .section-gradient {
+            background: linear-gradient(180deg, rgba(13, 13, 13, 1) 0%, rgba(16, 185, 129, 0.05) 100%);
+        }
+
+        .btn-primary {
+            background-color: #FBBF24;
+            color: #1F2937;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #F59E0B;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 1px solid #FBBF24;
+            color: #FBBF24;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background-color: #FBBF24;
+            color: #1F2937;
+        }
+
+        .card {
+            background-color: #1F2937;
+            border: 1px solid #374151;
+        }
+
+        .feature-icon {
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%);
+            border: 1px solid #FBBF24;
+        }
+
+        .glow {
+            box-shadow: 0 0 15px rgba(251, 191, 36, 0.3), 0 0 5px rgba(16, 185, 129, 0.3);
+        }
+
+        /* Styling for iframe demo */
+        .browser-mockup {
+            border-top: 2em solid rgba(31, 41, 55, 0.7);
+            box-shadow: 0 0.1em 1em 0 rgba(0, 0, 0, 0.4);
+            position: relative;
+            border-radius: 6px;
+        }
+
+        .browser-mockup:before {
+            display: block;
+            position: absolute;
+            content: '';
+            top: -1.25em;
+            left: 1em;
+            width: 0.5em;
+            height: 0.5em;
+            border-radius: 50%;
+            background-color: #f44;
+            box-shadow: 0 0 0 2px #f44, 1.5em 0 0 2px #9b3, 2.5em 0 0 2px #fb5, 3.5em 0 0 2px #fb5;
+        }
+
+        .loading-dots span {
+            animation-name: blink;
+            animation-duration: 1.4s;
+            animation-iteration-count: infinite;
+            animation-fill-mode: both;
+        }
+
+        .loading-dots span:nth-child(2) {
+            animation-delay: .2s;
+        }
+
+        .loading-dots span:nth-child(3) {
+            animation-delay: .4s;
+        }
+
+        @keyframes blink {
+            0% {
+                opacity: .2;
+            }
+
+            20% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: .2;
+            }
+        }
+
+        /* New Roadmap Styles */
+        .timeline-item {
+            position: relative;
+            padding-left: 2.5rem;
+            padding-bottom: 2rem;
+            border-left: 2px solid #374151;
+        }
+
+        .timeline-item:last-child {
+            border-left: 2px solid transparent;
+            padding-bottom: 0;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -0.5rem;
+            top: 0;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            background-color: #FBBF24;
+            border: 2px solid #1F2937;
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <!-- Header -->
+    <header class="bg-gray-900/80 backdrop-blur-sm fixed top-0 left-0 right-0 z-50 border-b border-gray-800">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="#">
+                    <div class="flex items-center space-x-2">
+                        <img class=" lg:w-10 w-7" src="assets/img/logo.png" alt="logo">
+                        <span
+                            class="text-2xl font-bold bg-gradient-to-r from-[#10B981] to-[#FBBF24] text-transparent bg-clip-text inline-block">Goloka</span>
+                    </div>
+                </a>
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#about" class="text-gray-300 hover:text-yellow-400 transition">Tentang</a>
+                    <a href="#demo" class="text-gray-300 hover:text-yellow-400 transition">Demo</a>
+                    <a href="#services" class="text-gray-300 hover:text-yellow-400 transition">Layanan</a>
+                    <a href="#community" class="text-gray-300 hover:text-yellow-400 transition">Komunitas</a>
+                    <a href="#roadmap" class="text-gray-300 hover:text-yellow-400 transition">Roadmap</a>
+                    <a href="#contact" class="text-gray-300 hover:text-yellow-400 transition">Kontak</a>
+                </nav>
+                <div class="md:hidden">
+                    <button id="menu-btn" class="text-white">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4">
+                <a href="#about" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800 rounded">Tentang</a>
+                <a href="#demo" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800 rounded">Demo</a>
+                <a href="#services" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800 rounded">Layanan</a>
+                <a href="#community"
+                    class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800 rounded">Komunitas</a>
+                <a href="#roadmap" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800 rounded">Roadmap</a>
+                <a href="#contact" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800 rounded">Kontak</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- 1. Hero Section -->
+        <section class="relative flex items-center justify-center py-48 min-h-screen overflow-hidden">
+            <div class="absolute inset-0 hero-gradient opacity-10 blur-3xl"></div>
+            <div class="container mx-auto px-6 text-center relative z-10">
+                <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight">
+                    <span class="bg-clip-text text-transparent hero-gradient">UMKM Naik Kelas,</span><br> Komunitas
+                    Makin Cuan!
+                </h1>
+                <p class="mt-6 max-w-2xl mx-auto text-md md:text-xl text-gray-300">
+                    Program Goloka mencakup toko online, promosi komunitas, marketplace regional serta edukasi digital
+                    dan AI.
+                </p>
+                <div class="mt-10 flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <a href="#contact"
+                        class="w-full sm:w-auto btn-primary font-semibold py-3 px-8 rounded-lg shadow-lg glow">
+                        Gabung Sekarang
+                    </a>
+                    <a href="#about" class="w-full sm:w-auto btn-secondary font-semibold py-3 px-8 rounded-lg">
+                        Tentang Kami
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Tentang Goloka -->
+        <section id="about" class="flex items-center justify-center lg:min-h-screen py-20 section-gradient">
+            <div class="container mx-auto px-6">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="text-center md:text-left">
+                        <h2 class="text-3xl md:text-4xl font-bold text-white">Apa itu <span
+                                class="hero-gradient bg-clip-text text-transparent">Goloka</span>?</h2>
+                        <p class="mt-4 text-gray-300 text-lg">
+                            Goloka adalah platform digital untuk UMKM yang ingin naik kelas tanpa ribet. Dengan Goloka,
+                            kamu bisa:
+                        </p>
+                        <ul class="mt-6 space-y-4 text-left">
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-green-400 mr-3 flex-shrink-0" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span>Punya <span class="font-semibold text-white">toko online sendiri</span> dengan
+                                    mudah dan cepat.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-green-400 mr-3 flex-shrink-0" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span><span class="font-semibold text-white">Dipromosikan oleh komunitas</span> yang
+                                    solid dan saling mendukung.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-green-400 mr-3 flex-shrink-0" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span>Mendapatkan <span class="font-semibold text-white">bimbingan
+                                        edukasi digital dan AI.</span></span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-green-400 mr-3 flex-shrink-0" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span>Akses jualan di<span class="font-semibold text-white">
+                                        Marketplace Regional khusus UMKM.</span></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="p-8 rounded-lg card text-center border-yellow-400/50">
+                        <p class="text-2xl italic text-gray-200">"Dari Komunitas, Oleh Komunitas, Untuk Komunitas."</p>
+                        <p class="mt-4 text-gray-400">- Visi Goloka</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Demo Interaktif -->
+        <section id="demo" class="flex items-center justify-center min-h-screen py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white">Coba Langsung <span
+                            class="hero-gradient bg-clip-text text-transparent">Demo Toko</span></h2>
+                    <p class="mt-4 text-gray-300 max-w-2xl mx-auto">Rasakan pengalaman memiliki toko online profesional.
+                        Klik, scroll, dan jelajahi contoh toko mitra kami secara langsung di bawah ini.</p>
+                </div>
+                <div class="browser-mockup">
+                    <iframe class="w-full h-96 md:h-[600px] rounded-b-md" src="https://toko.goloka.my.id/"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Paket Layanan -->
+        <section id="services" class="flex items-center justify-center min-h-screen py-24 section-gradient">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white">Paket Layanan Fleksibel</h2>
+                    <p class="mt-4 text-gray-300 max-w-2xl mx-auto">Pilih paket yang paling sesuai dengan kebutuhan
+                        bisnismu untuk mulai bertumbuh bersama kami.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Paket 1 -->
+                    <div
+                        class="card rounded-lg p-8 flex flex-col transform hover:scale-105 transition-transform duration-300">
+                        <h3 class="text-2xl font-bold text-white">Bulanan</h3>
+                        <p class="mt-2 text-gray-400">Cocok untuk mencoba</p>
+                        <div class="my-6">
+                            <span class="text-5xl font-extrabold text-white">Rp150rb</span>
+                        </div>
+                        <ul class="space-y-4 text-gray-300 flex-grow">
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-2" fill="currentColor"
+                                    viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                        clip-rule="evenodd"></path>
+                                </svg>Toko online aktif 1 bulan</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-2" fill="currentColor"
+                                    viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                        clip-rule="evenodd"></path>
+                                </svg>2 slot promosi komunitas</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-2" fill="currentColor"
+                                    viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                        clip-rule="evenodd"></path>
+                                </svg>Cashback <span class="font-bold text-yellow-400 ml-1">$GLK Rp50.000</span></li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-2" fill="currentColor"
+                                    viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                        clip-rule="evenodd"></path>
+                                </svg>Perpanjangan: Rp100.000 ($GLK)</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-2" fill="currentColor"
+                                    viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                        clip-rule="evenodd"></path>
+                                </svg>Komisi referral: 20%</li>
+                        </ul>
+                        <a href="#contact"
+                            class="mt-8 btn-secondary w-full text-center font-semibold py-3 px-8 rounded-lg">Pilih
+                            Paket</a>
+                    </div>
+                    <!-- Paket 2 -->
+                    <div
+                        class="card rounded-lg p-8 flex flex-col border-2 border-yellow-400 glow transform hover:scale-105 transition-transform duration-300 relative">
+                        <span
+                            class="absolute top-0 right-0 -mt-3 mr-3 bg-yellow-400 text-gray-900 text-xs font-bold px-3 py-1 rounded-full">Paling
+                            Populer</span>
+                        <h3 class="text-2xl font-bold text-white">6 Bulan</h3>
+                        <p class="mt-2 text-gray-400">Hemat dan optimal</p>
+                        <div class="my-6">
+                            <span class="text-5xl font-extrabold text-white">Rp500rb</span>
+                        </div>
+                        <ul class="space-y-4 text-gray-300 flex-grow">
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-2" fill="currentColor"
+                                    viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                        clip-rule="evenodd"></path>
+                                </svg>Toko online aktif 6 bulan</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-2" fill="currentColor"
+                                    viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                        clip-rule="evenodd"></path>
+                                </svg>3-4 slot promosi/bulan</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-2" fill="currentColor"
+                                    viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                        clip-rule="evenodd"></path>
+                                </svg>Cashback <span class="font-bold text-yellow-400 ml-1">$GLK Rp100.000</span></li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-2" fill="currentColor"
+                                    viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                        clip-rule="evenodd"></path>
+                                </svg>Perpanjangan: Rp400.000 ($GLK)</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-2" fill="currentColor"
+                                    viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                        clip-rule="evenodd"></path>
+                                </svg>Komisi referral: 20%</li>
+                        </ul>
+                        <a href="#contact"
+                            class="mt-8 btn-primary w-full text-center font-semibold py-3 px-8 rounded-lg">Pilih
+                            Paket</a>
+                    </div>
+                    <!-- Paket 3 -->
+                    <div
+                        class="card rounded-lg p-8 flex flex-col transform hover:scale-105 transition-transform duration-300">
+                        <h3 class="text-2xl font-bold text-white">Tahunan</h3>
+                        <p class="mt-2 text-gray-400">Value terbaik</p>
+                        <div class="my-6">
+                            <span class="text-5xl font-extrabold text-white">Rp800rb</span>
+                        </div>
+                        <ul class="space-y-4 text-gray-300 flex-grow">
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-2" fill="currentColor"
+                                    viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                        clip-rule="evenodd"></path>
+                                </svg>Toko online aktif 1 tahun</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-2" fill="currentColor"
+                                    viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                        clip-rule="evenodd"></path>
+                                </svg>5 slot promosi/bulan</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-2" fill="currentColor"
+                                    viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                        clip-rule="evenodd"></path>
+                                </svg>Cashback <span class="font-bold text-yellow-400 ml-1">$GLK Rp200.000</span></li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-2" fill="currentColor"
+                                    viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                        clip-rule="evenodd"></path>
+                                </svg>Perpanjangan: Rp400.000 ($GLK)</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-2" fill="currentColor"
+                                    viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                        clip-rule="evenodd"></path>
+                                </svg>Komisi referral: 20%</li>
+                        </ul>
+                        <a href="#contact"
+                            class="mt-8 btn-secondary w-full text-center font-semibold py-3 px-8 rounded-lg">Pilih
+                            Paket</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4.Tentang token -->
+        <!-- 5.Tokenomics -->
+
+        <!-- 6. Fitur Komunitas -->
+        <section id="community" class="flex items-center justify-center min-h-screen py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white">Ekosistem Pemberdayaan</h2>
+                    <p class="mt-4 text-gray-300 max-w-2xl mx-auto">Goloka bukan hanya platform, tapi rumah bagi UMKM
+                        untuk berkolaborasi dan tumbuh bersama.</p>
+                </div>
+                <div class="grid grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="text-center p-6">
+                        <div class="feature-icon w-16 h-16 rounded-full mx-auto flex items-center justify-center mb-4">
+                            <svg class="w-8 h-8 text-yellow-300" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m-7.5-2.228a4.5 4.5 0 00-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 001.13-1.897M16.5 7.5l-1.88-1.88a1.5 1.5 0 10-2.12 2.122L16.5 7.5z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Duta Goloka</h3>
+                        <p class="mt-2 text-gray-400">Perwakilan aktif di setiap daerah untuk membantu dan mengedukasi
+                            mitra baru.</p>
+                    </div>
+                    <div class="text-center p-6">
+                        <div class="feature-icon w-16 h-16 rounded-full mx-auto flex items-center justify-center mb-4">
+                            <svg class="w-8 h-8 text-yellow-300" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Workshop & Edukasi</h3>
+                        <p class="mt-2 text-gray-400">Kelas rutin tentang bisnis digital, pemasaran, dan manajemen
+                            keuangan.</p>
+                    </div>
+                    <!-- REVISED: Marketplace -->
+                    <div class="text-center p-6">
+                        <div class="feature-icon w-16 h-16 rounded-full mx-auto flex items-center justify-center mb-4">
+                            <svg class="w-8 h-8 text-yellow-300" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Marketplace Regional</h3>
+                        <p class="mt-2 text-gray-400">Temukan dan jual produk lokal unggulan di sekitarmu, perkuat
+                            ekonomi daerah.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. REVISED: Roadmap -->
+        <section id="roadmap" class="flex items-center justify-center min-h-screen py-24 section-gradient">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white">Roadmap Goloka</h2>
+                    <p class="mt-4 text-gray-300 max-w-2xl mx-auto">Langkah strategis kami untuk membangun ekosistem
+                        UMKM digital yang mandiri dan terdesentralisasi.</p>
+                </div>
+
+                <div class="max-w-3xl mx-auto">
+                    <!-- Timeline Item 1 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="flex items-center mb-2">
+                            <h3 class="font-bold text-lg text-yellow-400">Q1 2026 - Peluncuran & Validasi Awal</h3>
+                            <span
+                                class="ml-auto text-xs font-semibold bg-green-500/20 text-green-400 px-2 py-1 rounded-full">Selesai</span>
+                        </div>
+                        <p class="text-gray-400">Fase peluncuran platform dan validasi konsep di komunitas awal.</p>
+                        <ul class="mt-3 list-disc list-inside text-gray-300 text-sm space-y-1">
+                            <li>Peluncuran platform Goloka versi beta.</li>
+                            <li>Onboarding 100 UMKM mitra pertama.</li>
+                            <li>Implementasi sistem referral & komisi.</li>
+                            <li>Pengumpulan feedback untuk pengembangan.</li>
+                        </ul>
+                    </div>
+
+                    <!-- <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="flex items-center mb-2">
+                            <h3 class="font-bold text-lg text-yellow-400">Q4 2025 - Ekspansi Awal & Listing DEX</h3>
+                            <span
+                                class="ml-auto text-xs font-semibold bg-blue-500/20 text-blue-400 px-2 py-1 rounded-full">Sedang
+                                Berjalan</span>
+                        </div>
+                        <p class="text-gray-400">Memperkenalkan token $GLK ke publik dan memperluas jangkauan komunitas.
+                        </p>
+                        <ul class="mt-3 list-disc list-inside text-gray-300 text-sm space-y-1">
+                            <li>Listing token $GLK di Decentralized Exchange (DEX).</li>
+                            <li>Kemitraan strategis dengan komunitas bisnis lokal.</li>
+                            <li>Peningkatan fitur berdasarkan feedback pengguna.</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="flex items-center mb-2">
+                            <h3 class="font-bold text-lg text-yellow-400">Q1 2026 - Pertumbuhan & Skalabilitas</h3>
+                            <span
+                                class="ml-auto text-xs font-semibold bg-gray-500/20 text-gray-400 px-2 py-1 rounded-full">Direncanakan</span>
+                        </div>
+                        <p class="text-gray-400">Fokus pada akuisisi pengguna masif dan penguatan jaringan.</p>
+                        <ul class="mt-3 list-disc list-inside text-gray-300 text-sm space-y-1">
+                            <li>Target akuisisi 1.000+ mitra aktif.</li>
+                            <li>Kampanye pemasaran digital skala besar.</li>
+                            <li>Peluncuran program "Duta Goloka" secara nasional.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="flex items-center mb-2">
+                            <h3 class="font-bold text-lg text-yellow-400">Q2 2026 - Aksesibilitas & Kepercayaan</h3>
+                            <span
+                                class="ml-auto text-xs font-semibold bg-gray-500/20 text-gray-400 px-2 py-1 rounded-full">Direncanakan</span>
+                        </div>
+                        <p class="text-gray-400">Mempermudah akses ke ekosistem dan meningkatkan keamanan.</p>
+                        <ul class="mt-3 list-disc list-inside text-gray-300 text-sm space-y-1">
+                            <li>Peluncuran aplikasi Goloka di Android & iOS.</li>
+                            <li>Listing token $GLK di Centralized Exchange (CEX).</li>
+                            <li>Audit keamanan menyeluruh pada smart contract.</li>
+                        </ul>
+                    </div>
+                 
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="flex items-center mb-2">
+                            <h3 class="font-bold text-lg text-yellow-400">2027 - Menuju Ekosistem Mandiri</h3>
+                            <span
+                                class="ml-auto text-xs font-semibold bg-gray-500/20 text-gray-400 px-2 py-1 rounded-full">Direncanakan</span>
+                        </div>
+                        <p class="text-gray-400">Pengembangan fitur-fitur terdesentralisasi untuk kemandirian komunitas.
+                        </p>
+                        <ul class="mt-3 list-disc list-inside text-gray-300 text-sm space-y-1">
+                            <li>Peluncuran fitur Marketplace Regional.</li>
+                            <li>Pengembangan prototipe pinjaman mikro (micro-loan).</li>
+                            <li>Implementasi sistem voting tata kelola menggunakan $GLK.</li>
+                        </ul>
+                    </div> -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. Hubungi Kami -->
+        <section id="contact" class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="grid lg:grid-cols-2 gap-12">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-bold text-white">Siap Bergabung?</h2>
+                        <p class="mt-4 text-gray-300">Lengkapi formulir di samping untuk mendaftar, atau hubungi kami
+                            jika ada pertanyaan.</p>
+                        <div class="mt-8 space-y-4">
+                            <a href="https://wa.me/6285189081947?text=Halo%20Goloka%2C%20saya%20tertarik%20untuk%20bertanya%20lebih%20lanjut."
+                                target="_blank" class="flex items-center group">
+                                <svg class="w-6 h-6 text-green-400 group-hover:text-yellow-400"
+                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
+                                    <path
+                                        d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943s-.08-.15-.18-.25" />
+                                </svg>
+                                <span class="ml-3 text-gray-200 group-hover:text-yellow-400">+62 851-8908-1947
+                                    (WhatsApp)</span>
+                            </a>
+                            <a href="https://www.instagram.com/goloka_id" target="_blank"
+                                class="flex items-center group">
+                                <svg class="w-6 h-6 text-green-400 group-hover:text-yellow-400"
+                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
+                                    <path
+                                        d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.703.01 5.556 0 5.829 0 8s.01 2.444.048 3.297c.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.556 15.99 5.829 16 8 16s2.444-.01 3.297-.048c.852-.04 1.433-.174 1.942-.372.526-.205.972-.478 1.417-.923.445-.444.718-.891.923-1.417.198-.51.333-1.09.372-1.942C15.99 10.444 16 10.171 16 8s-.01-2.444-.048-3.297c-.04-.852-.174-1.433-.372-1.942a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.09-.333-1.942-.372C10.444.01 10.171 0 8 0zm0 1.442c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.282.24.705.275 1.486.039.843.047 1.096.047 3.232s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.92c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.598-.92c-.11-.28-.24-.705-.276-1.485C1.44 10.389 1.442 10.136 1.442 8s.002-2.39.047-3.233c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.843-.039 1.096-.047 3.233-.047zM8 3.882a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 6.776A2.667 2.667 0 1 1 8 5.333a2.667 2.667 0 0 1 0 5.325zm4.905-6.843a.96.96 0 1 0 0-1.92.96.96 0 0 0 0 1.92z" />
+                                </svg>
+                                <span class="ml-3 text-gray-200 group-hover:text-yellow-400">@goloka_id
+                                    (Instagram)</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card p-8 rounded-lg">
+                        <form id="contact-form">
+                            <div class="mb-4">
+                                <label for="name" class="block text-sm font-medium text-gray-300 mb-1">Nama</label>
+                                <input type="text" id="name" name="name"
+                                    class="w-full bg-gray-800 border border-gray-600 rounded-lg px-3 py-2 focus:outline-none focus:border-yellow-400"
+                                    placeholder="Nama Lengkap Anda" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="whatsapp" class="block text-sm font-medium text-gray-300 mb-1">No.
+                                    WhatsApp</label>
+                                <input type="text" id="whatsapp" name="whatsapp"
+                                    class="w-full bg-gray-800 border border-gray-600 rounded-lg px-3 py-2 focus:outline-none focus:border-yellow-400"
+                                    placeholder="0812xxxxxx" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="email" class="block text-sm font-medium text-gray-300 mb-1">Email
+                                    (Opsional)</label>
+                                <input type="email" id="email" name="email"
+                                    class="w-full bg-gray-800 border border-gray-600 rounded-lg px-3 py-2 focus:outline-none focus:border-yellow-400"
+                                    placeholder="anda@email.com">
+                            </div>
+                            <div class="mb-6">
+                                <label for="paket" class="block text-sm font-medium text-gray-300 mb-1">Pilih
+                                    Paket</label>
+                                <select id="paket" name="paket"
+                                    class="w-full bg-gray-800 border border-gray-600 rounded-lg px-3 py-2 focus:outline-none focus:border-yellow-400">
+                                    <option value="Bulanan">Paket Bulanan - Rp150.000</option>
+                                    <option value="6 Bulan">Paket 6 Bulan - Rp500.000</option>
+                                    <option value="Tahunan">Paket Tahunan - Rp800.000</option>
+                                </select>
+                            </div>
+                            <div class="flex flex-col sm:flex-row gap-4">
+                                <button type="button" id="submit-wa-btn"
+                                    class="w-full btn-primary font-semibold py-3 px-8 rounded-lg shadow-lg">Daftar via
+                                    WhatsApp</button>
+                                <a href="https://wa.me/6285189081947?text=Halo%20Goloka%2C%20saya%20tertarik%20untuk%20bertanya%20lebih%20lanjut."
+                                    target="_blank"
+                                    class="w-full text-center btn-secondary font-semibold py-3 px-8 rounded-lg">Hubungi
+                                    Tim</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 9. Footer -->
+    <footer class="bg-gray-900 border-t border-gray-800">
+        <div class="container mx-auto px-6 py-8">
+            <div class="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
+                <a href="#">
+                    <div class="flex items-center space-x-2">
+                        <img class=" lg:w-10 w-7" src="assets/img/logo.png" alt="logo">
+                        <span
+                            class="text-2xl font-bold bg-gradient-to-r from-[#10B981] to-[#FBBF24] text-transparent bg-clip-text inline-block">Goloka</span>
+                    </div>
+                </a>
+                <div
+                    class="flex lg:space-x-6 space-y-3 lg:space-y-0 md:space-y-0 md:space-x-6 mx-auto flex-col md:flex-row items-center justify-center">
+                    <a href="#" class="text-gray-400 hover:text-white">Syarat Ketentuan</a>
+                    <a href="#" class="text-gray-400 hover:text-white">Whitepaper</a>
+                    <a href="#" class="text-gray-400 hover:text-white">Disclaimer</a>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="https://www.instagram.com/goloka_id" target="_blank"
+                        class="text-gray-400 hover:text-white">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 16 16">
+                            <path
+                                d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.703.01 5.556 0 5.829 0 8s.01 2.444.048 3.297c.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.556 15.99 5.829 16 8 16s2.444-.01 3.297-.048c.852-.04 1.433-.174 1.942-.372.526-.205.972-.478 1.417-.923.445-.444.718-.891.923-1.417.198-.51.333-1.09.372-1.942C15.99 10.444 16 10.171 16 8s-.01-2.444-.048-3.297c-.04-.852-.174-1.433-.372-1.942a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.09-.333-1.942-.372C10.444.01 10.171 0 8 0zm0 1.442c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.282.24.705.275 1.486.039.843.047 1.096.047 3.232s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.92c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.598-.92c-.11-.28-.24-.705-.276-1.485C1.44 10.389 1.442 10.136 1.442 8s.002-2.39.047-3.233c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.843-.039 1.096-.047 3.233-.047zM8 3.882a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 6.776A2.667 2.667 0 1 1 8 5.333a2.667 2.667 0 0 1 0 5.325zm4.905-6.843a.96.96 0 1 0 0-1.92.96.96 0 0 0 0 1.92z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="mt-8 text-center text-gray-500 text-sm">
+                &copy; <span id="year"></span> Goloka. Semua Hak Cipta Dilindungi.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Mobile Menu Toggle
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Chart.js for Tokenomics
+            const ctx = document.getElementById('tokenomicsChart').getContext('d');
+            const tokenomicsChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Komunitas', 'Developer & Operasional', 'Cadangan Ekosistem', 'Listing Publik'],
+                    datasets: [{
+                        label: 'Distribusi Token $GLK',
+                        data: [60, 20, 15, 5],
+                        backgroundColor: ['#10B981', '#FBBF24', '#3B82F6', '#8B5CF6'],
+                        borderColor: '#1F2937',
+                        borderWidth: 4,
+                        hoverOffset: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    cutout: '70%',
+                    plugins: { legend: { display: false } }
+                }
+            });
+
+            // Dynamic GLK Price Simulation
+            const priceElement = document.getElementById('glk-price');
+            let basePrice = 102.00; // REVISED: Base price
+            function updatePrice() {
+                if (!priceElement) return;
+                const fluctuation = (Math.random() - 0.5) * 2;
+                const newPrice = basePrice + fluctuation;
+                priceElement.textContent = newPrice.toLocaleString('id-ID', {
+                    style: 'currency', currency: 'IDR', minimumFractionDigits: 2, maximumFractionDigits: 2
+                });
+                if (newPrice > basePrice) {
+                    priceElement.classList.remove('text-red-400'); priceElement.classList.add('text-green-400');
+                } else {
+                    priceElement.classList.remove('text-green-400'); priceElement.classList.add('text-red-400');
+                }
+                basePrice = newPrice;
+            }
+            setInterval(updatePrice, 3000);
+            updatePrice();
+
+            // Contact Form to WhatsApp Integration
+            const submitWaBtn = document.getElementById('submit-wa-btn');
+            if (submitWaBtn) {
+                submitWaBtn.addEventListener('click', function () {
+                    const name = document.getElementById('name').value;
+                    const whatsapp = document.getElementById('whatsapp').value;
+                    const email = document.getElementById('email').value;
+                    const paket = document.getElementById('paket').value;
+
+                    if (name.trim() === '' || whatsapp.trim() === '') {
+                        alert('Mohon isi Nama dan No. WhatsApp.');
+                        return;
+                    }
+
+                    const phoneNumber = "6285189081947";
+                    const message = `Halo Goloka, saya ingin mendaftar dengan detail berikut:
+-----------------------------
+*Nama:* ${name}
+*No. WhatsApp:* ${whatsapp}
+*Email:* ${email || 'Tidak diisi'}
+*Paket yang Dipilih:* ${paket}
+-----------------------------
+Mohon informasinya lebih lanjut. Terima kasih.`;
+
+                    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+                    window.open(whatsappUrl, '_blank');
+                });
+            }
+        });
+
+        document.getElementById('year').textContent = `${new Date().getFullYear()}`
+    </script>
+</body>
+
+</html>
