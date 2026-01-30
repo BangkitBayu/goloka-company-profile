@@ -194,7 +194,7 @@
                     Makin Cuan!
                 </h1>
                 <p class="mt-6 max-w-2xl mx-auto text-md md:text-xl text-gray-300">
-                    Program Goloka mencakup toko online, promosi komunitas, marketplace regional serta edukasi digital
+                    Program Goloka mencakup toko online, promosi komunitas, Marketplace Lokal serta edukasi digital
                     dan AI.
                 </p>
                 <div class="mt-10 flex flex-col sm:flex-row justify-center items-center gap-4">
@@ -255,7 +255,7 @@
                                         d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                 </svg>
                                 <span>Akses jualan di<span class="font-semibold text-white">
-                                        Marketplace Regional khusus UMKM.</span></span>
+                                        Marketplace Lokal khusus UMKM.</span></span>
                             </li>
                         </ul>
                     </div>
@@ -408,15 +408,20 @@
                 <div class="grid grid-cols-2 lg:grid-cols-3 gap-8">
                     <div class="text-center p-6">
                         <div class="feature-icon w-16 h-16 rounded-full mx-auto flex items-center justify-center mb-4">
-                            <svg class="w-8 h-8 text-yellow-300" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            <!-- <svg class="w-8 h-8 text-yellow-300" xmlns="http://www.w3.org/2000/svg" fill="none"
                                 viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m-7.5-2.228a4.5 4.5 0 00-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 001.13-1.897M16.5 7.5l-1.88-1.88a1.5 1.5 0 10-2.12 2.122L16.5 7.5z" />
+                            </svg> -->
+
+                            <svg class="w-8 h-8 text-yellow-300" xmlns="http://www.w3.org/2000/svg" width="22"
+                                height="22" viewBox="0 0 24 24">
+                                <path fill="#fef08a"
+                                    d="M18.72 14.76c.35-.85.54-1.76.54-2.76c0-.72-.11-1.41-.3-2.05c-.65.15-1.33.23-2.04.23A9.07 9.07 0 0 1 9.5 6.34a9.2 9.2 0 0 1-4.73 4.88c-.04.25-.04.52-.04.78A7.27 7.27 0 0 0 12 19.27c1.05 0 2.06-.23 2.97-.64c.57 1.09.83 1.63.81 1.63c-1.64.55-2.91.82-3.78.82c-2.42 0-4.73-.95-6.43-2.66a9 9 0 0 1-2.24-3.69H2v-4.55h1.09a9.09 9.09 0 0 1 15.33-4.6a9 9 0 0 1 2.47 4.6H22v4.55h-.06L18.38 18l-5.3-.6v-1.67h4.83zm-9.45-2.99c.3 0 .59.12.8.34a1.136 1.136 0 0 1 0 1.6c-.21.21-.5.33-.8.33c-.63 0-1.14-.5-1.14-1.13s.51-1.14 1.14-1.14m5.45 0c.63 0 1.13.51 1.13 1.14s-.5 1.13-1.13 1.13s-1.14-.5-1.14-1.13a1.14 1.14 0 0 1 1.14-1.14" />
                             </svg>
                         </div>
-                        <h3 class="text-xl font-bold text-white">Duta Goloka</h3>
-                        <p class="mt-2 text-gray-400">Perwakilan aktif di setiap daerah untuk membantu dan mengedukasi
-                            mitra baru.</p>
+                        <h3 class="text-xl font-bold text-white">Kordinator Daerah</h3>
+                        <p class="mt-2 text-gray-400">Perwakilan aktif di setiap daerah.</p>
                     </div>
                     <div class="text-center p-6">
                         <div class="feature-icon w-16 h-16 rounded-full mx-auto flex items-center justify-center mb-4">
@@ -441,7 +446,7 @@
                                     d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
                             </svg>
                         </div>
-                        <h3 class="text-xl font-bold text-white">Marketplace Regional</h3>
+                        <h3 class="text-xl font-bold text-white">Marketplace Lokal</h3>
                         <p class="mt-2 text-gray-400">Temukan dan jual produk lokal unggulan di sekitarmu, perkuat
                             ekonomi daerah.</p>
                     </div>
@@ -634,7 +639,7 @@
                 </a>
                 <div
                     class="flex lg:space-x-6 space-y-3 lg:space-y-0 md:space-y-0 md:space-x-6 mx-auto flex-col md:flex-row items-center justify-center">
-                    <a href="#" class="text-gray-400 hover:text-white">Syarat Ketentuan</a>
+                    <a href="#" class="text-gray-400 hover:text-white">Syarat & Ketentuan</a>
                     <a href="#" class="text-gray-400 hover:text-white">Whitepaper</a>
                     <a href="#" class="text-gray-400 hover:text-white">Disclaimer</a>
                 </div>
@@ -663,64 +668,22 @@
                 mobileMenu.classList.toggle('hidden');
             });
 
-            // Chart.js for Tokenomics
-            const ctx = document.getElementById('tokenomicsChart').getContext('d');
-            const tokenomicsChart = new Chart(ctx, {
-                type: 'doughnut',
-                data: {
-                    labels: ['Komunitas', 'Developer & Operasional', 'Cadangan Ekosistem', 'Listing Publik'],
-                    datasets: [{
-                        label: 'Distribusi Token $GLK',
-                        data: [60, 20, 15, 5],
-                        backgroundColor: ['#10B981', '#FBBF24', '#3B82F6', '#8B5CF6'],
-                        borderColor: '#1F2937',
-                        borderWidth: 4,
-                        hoverOffset: 8
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    cutout: '70%',
-                    plugins: { legend: { display: false } }
-                }
-            });
-
-            // Dynamic GLK Price Simulation
-            const priceElement = document.getElementById('glk-price');
-            let basePrice = 102.00; // REVISED: Base price
-            function updatePrice() {
-                if (!priceElement) return;
-                const fluctuation = (Math.random() - 0.5) * 2;
-                const newPrice = basePrice + fluctuation;
-                priceElement.textContent = newPrice.toLocaleString('id-ID', {
-                    style: 'currency', currency: 'IDR', minimumFractionDigits: 2, maximumFractionDigits: 2
-                });
-                if (newPrice > basePrice) {
-                    priceElement.classList.remove('text-red-400'); priceElement.classList.add('text-green-400');
-                } else {
-                    priceElement.classList.remove('text-green-400'); priceElement.classList.add('text-red-400');
-                }
-                basePrice = newPrice;
-            }
-            setInterval(updatePrice, 3000);
-            updatePrice();
-
             // Contact Form to WhatsApp Integration
             const submitWaBtn = document.getElementById('submit-wa-btn');
-            if (submitWaBtn) {
-                submitWaBtn.addEventListener('click', function () {
-                    const name = document.getElementById('name').value;
-                    const whatsapp = document.getElementById('whatsapp').value;
-                    const email = document.getElementById('email').value;
-                    const paket = document.getElementById('paket').value;
 
-                    if (name.trim() === '' || whatsapp.trim() === '') {
-                        alert('Mohon isi Nama dan No. WhatsApp.');
-                        return;
-                    }
+            submitWaBtn.addEventListener('click', function () {
+                const name = document.getElementById('name').value;
+                const whatsapp = document.getElementById('whatsapp').value;
+                const email = document.getElementById('email').value;
+                const paket = document.getElementById('paket').value;
 
-                    const phoneNumber = "6285189081947";
-                    const message = `Halo Goloka, saya ingin mendaftar dengan detail berikut:
+                if (name.trim() === '' || whatsapp.trim() === '') {
+                    alert('Mohon isi Nama dan No. WhatsApp.');
+                    return;
+                }
+
+                const phoneNumber = "6285189081947";
+                const message = `Halo Goloka, saya ingin mendaftar dengan detail berikut:
 -----------------------------
 *Nama:* ${name}
 *No. WhatsApp:* ${whatsapp}
@@ -729,11 +692,12 @@
 -----------------------------
 Mohon informasinya lebih lanjut. Terima kasih.`;
 
-                    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+                const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
-                    window.open(whatsappUrl, '_blank');
-                });
-            }
+                window.open(whatsappUrl, '_blank');
+            });
+
+
         });
 
         document.getElementById('year').textContent = `${new Date().getFullYear()}`
