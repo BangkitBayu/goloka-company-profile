@@ -585,6 +585,7 @@
                                 <input type="text" id="name" name="name"
                                     class="w-full bg-gray-800 border border-gray-600 rounded-lg px-3 py-2 focus:outline-none focus:border-yellow-400"
                                     placeholder="Nama Lengkap Anda" required>
+                                <span class="invalid-validation text-red-500 text-sm hidden"></span>
                             </div>
                             <div class="mb-4">
                                 <label for="whatsapp" class="block text-sm font-medium text-gray-300 mb-1">No.
@@ -592,6 +593,7 @@
                                 <input type="text" id="whatsapp" name="whatsapp"
                                     class="w-full bg-gray-800 border border-gray-600 rounded-lg px-3 py-2 focus:outline-none focus:border-yellow-400"
                                     placeholder="0812xxxxxx" required>
+                                <span class="invalid-validation text-red-500 text-sm hidden"></span>
                             </div>
                             <div class="mb-4">
                                 <label for="email" class="block text-sm font-medium text-gray-300 mb-1">Email
@@ -599,6 +601,7 @@
                                 <input type="email" id="email" name="email"
                                     class="w-full bg-gray-800 border border-gray-600 rounded-lg px-3 py-2 focus:outline-none focus:border-yellow-400"
                                     placeholder="anda@email.com">
+                                <span class="invalid-validation-email text-red-500 text-sm hidden"></span>
                             </div>
                             <div class="mb-6">
                                 <label for="paket" class="block text-sm font-medium text-gray-300 mb-1">Pilih
@@ -659,49 +662,7 @@
         </div>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Mobile Menu Toggle
-            const menuBtn = document.getElementById('menu-btn');
-            const mobileMenu = document.getElementById('mobile-menu');
-            menuBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-
-            // Contact Form to WhatsApp Integration
-            const submitWaBtn = document.getElementById('submit-wa-btn');
-
-            submitWaBtn.addEventListener('click', function () {
-                const name = document.getElementById('name').value;
-                const whatsapp = document.getElementById('whatsapp').value;
-                const email = document.getElementById('email').value;
-                const paket = document.getElementById('paket').value;
-
-                if (name.trim() === '' || whatsapp.trim() === '') {
-                    alert('Mohon isi Nama dan No. WhatsApp.');
-                    return;
-                }
-
-                const phoneNumber = "6285189081947";
-                const message = `Halo Goloka, saya ingin mendaftar dengan detail berikut:
------------------------------
-*Nama:* ${name}
-*No. WhatsApp:* ${whatsapp}
-*Email:* ${email || 'Tidak diisi'}
-*Paket yang Dipilih:* ${paket}
------------------------------
-Mohon informasinya lebih lanjut. Terima kasih.`;
-
-                const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-
-                window.open(whatsappUrl, '_blank');
-            });
-
-
-        });
-
-        document.getElementById('year').textContent = `${new Date().getFullYear()}`
-    </script>
+    <script src="scripts/main.js"></script>
 </body>
 
 </html>
